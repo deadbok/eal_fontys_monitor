@@ -1,0 +1,10 @@
+agentAddress udp:161,udp6:[::1]:161
+
+rocommunity {{ snmp_community }} localhost
+rocommunity {{ snmp_community }} default
+
+syslocation "A0.xx"
+syscontact "someone important" <"bigshot@{{ inventory_hostname }}">
+
+#Distro Detection
+extend .1.3.6.1.4.1.2021.7890.1 distro /usr/bin/distro

@@ -1,0 +1,35 @@
+- hosts: all
+  remote_user: "{{ remote_user }}"
+  become: True
+
+  tasks:
+  - debug: msg="connected to {{ inventory_hostname }}"
+
+  - name: apt get update
+    apt:
+      cache_valid_time: 3600
+      update_cache: True
+
+  - name: install snmp
+    apt:
+      state: present
+      name: snmpd
+
+  - name: set config
+    template:
+      dest: /etc/snmp/snmpd.conf
+      src: snmpd.conf.j2
+    notify: restart snmpd
+
+  - name: run test
+    connection: local
+    become: False
+    shell: snmpwalk -v 2c -c {{ snmp_community }} {{ ansible_default_ipv4.address}}
+    register: result
+    changed_when: False
+
+  - debug: var=result.stdout
+
+  handlers:
+    - name: restart snmpd
+      service: name=snmpd state=restarted
