@@ -2,4 +2,17 @@
 192.168.10.133 ansible_user=fontys ansible_become_method=su ansible_become_pass=test
 #172.16.49.1
 
-[hosts]
+[webservers]
+#group1 remote_user=nn
+#group2 remote_user=nn
+#group3 remote_user=nn
+#group4 remote_user=nn
+#group5 remote_user=nn
+#group6 remote_user=nn
+#group7 remote_user=nn
+#group8 remote_user=nn
+
+[routers_group_1]
+Router_1_1 ansible_hostname=172.16.1.1 ansible_user=root
+Router_1_2 ansible_hostname=172.16.1.1 ansible_user=root
+Router_1_3 ansible_hostname=172.16.1.1 ansible_user=root
