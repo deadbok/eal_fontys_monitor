@@ -1,0 +1,2 @@
+# set network to vagrant default
+snmp_network: 172.16.0.0/16

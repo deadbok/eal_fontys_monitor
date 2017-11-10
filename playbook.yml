@@ -1,0 +1,5 @@
+- hosts: monitor
+  become: true
+
+  roles:
+    - ansible-librenms
